@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
    --shape-light: #2e3948;
    --background: #010409;
    --text: #f0f6fc;
-   --text-seondary: #afb5bb;
+   --text-secondary: #afb5bb;
  }
 
  *{
