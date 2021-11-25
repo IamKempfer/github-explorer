@@ -1,25 +1,26 @@
 import { Container } from './styles'
 
-export function User() {
+export function User({ user, userRepos }) {
+    console.log(user)
     return (
         <Container>
-        <img src='https://github.com/IamKempfer.png' alt="Victor Kemfper" />
-        <h1>Victor Kempfer</h1>
-        <h2>IamKempfer</h2>
-        <p>Bio do usúario</p>
+        <img src={user.avatar_url} alt={user.name} />
+        <h1>{user.name}</h1>
+        <h2>{user.login}</h2>
+        <p>{user.bio}</p>
         <section>
             <div>
-                <strong>12</strong>
+                <strong>{userRepos?.length}</strong>
                 <span>Repositorio</span>
             </div>
 
             <div>
-                <strong>21</strong>
+                <strong>{user.followers}</strong>
                 <span>Seguidores</span>
             </div>
 
             <div>
-                <strong>21</strong>
+                <strong>{user.following}</strong>
                 <span>Seguindo</span>
             </div>
         </section>
