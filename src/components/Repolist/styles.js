@@ -9,11 +9,14 @@ border-bottom:10px solid #56a2f9;
 div{
     display: flex;
     align-items: center;
-    gap: 3rem;
+    justify-content: center;
+    position: relative;
     padding:1rem;
 
 
     button{
+        position: absolute;
+        left: 1rem;
         display: flex;
         align-items: center;
         background: var(--shape-light);

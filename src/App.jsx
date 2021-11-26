@@ -9,13 +9,26 @@ import { ReposList } from './components/Repolist';
 function App() {
   const [user, setUser] = useState()
   const [userRepos, setUserRepos] = useState()
+  const [isReposListActive, setIsReposListActive] = useState()
+
   return (
     <Container >
       <SearchBar setUser={setUser} setUserRepos={setUserRepos} />
 
-      {user && <User user={user} userRepos={userRepos}  />}
-
-      <ReposList />
+      {isReposListActive ? (
+        userRepos &&
+         <ReposList
+          user={user}
+           userRepos={userRepos}
+            setIsReposListActive={setIsReposListActive} />
+      ) 
+      : user && (
+        <User 
+        user={user} 
+        userRepos={userRepos} 
+        setIsReposListActive={setIsReposListActive} 
+        />
+      )}
 
       <GlobalStyle />
     </Container >
