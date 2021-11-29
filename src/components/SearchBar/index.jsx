@@ -1,10 +1,11 @@
 
 import { useRef } from 'react'
 import { FiSearch } from 'react-icons/fi'
+import { toast, ToastContainer } from 'react-toastify'
 import { Container } from './styles'
 
 export function SearchBar({ setUser, setUserRepos }) { 
-    const inputRef = useRef('')
+    const inputRef = useRef()
 
 
     function getUserData(e) {
@@ -13,16 +14,36 @@ export function SearchBar({ setUser, setUserRepos }) {
         try{
          fetch(`https://api.github.com/users/${inputRef.current.value}`)
          .then(response => response.json())
-         .then(data => setUser(data))   
-         
-         fetch(`https://api.github.com/users/${inputRef.current.value}/repos`)
-         .then(response => response.json())
-         .then(data => setUserRepos(data))    
-        } 
-        catch(error){
-            console.log(error)
-        }
+         .then(data => {
+             if (data.message === 'Not Found') {
+                setUser(null)
+                setUserRepos(null)
+                toast.error('Usuário não encrontrado', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'dark'
+                    });
+             } else {
+                 setUser(data)
+                 fetch(
+                    `https://api.github.com/users/${inputRef.current.value}/repos`
+                    )
+                .then(response => response.json())
+                .then(data => setUserRepos(data))  
+             }
+         })
+    } catch (error) {
+        console.log(error)
     }
+}
+         
+        
+    
 
     return (
         <Container>
@@ -37,7 +58,8 @@ export function SearchBar({ setUser, setUserRepos }) {
               <button type='submit'>
                   <FiSearch />
               </button>
-          </form>    
+          </form>
+          <ToastContainer />    
         </Container>
     );
     }
