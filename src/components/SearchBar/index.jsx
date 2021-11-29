@@ -1,31 +1,29 @@
-import { useState } from 'react'
+
+import { useRef } from 'react'
 import { FiSearch } from 'react-icons/fi'
 import { Container } from './styles'
 
 export function SearchBar({ setUser, setUserRepos }) { 
-    const [searchedValue, setSearchedValue] = useState('')
+    const inputRef = useRef('')
 
 
     function getUserData(e) {
         e.preventDefault()
     
         try{
-         fetch(`https://api.github.com/users/${searchedValue}`)
+         fetch(`https://api.github.com/users/${inputRef.current.value}`)
          .then(response => response.json())
          .then(data => setUser(data))   
          
-         fetch(`https://api.github.com/users/${searchedValue}/repos`)
+         fetch(`https://api.github.com/users/${inputRef.current.value}/repos`)
          .then(response => response.json())
          .then(data => setUserRepos(data))    
         } 
         catch(error){
             console.log(error)
         }
-
-        
-       
     }
-    
+
     return (
         <Container>
           <h1>Github Explorer</h1>
@@ -33,13 +31,13 @@ export function SearchBar({ setUser, setUserRepos }) {
           <form onSubmit={getUserData}>
               <div>
                   <span>github.com/</span>
-                  <input type="text" value={searchedValue} onChange={e => setSearchedValue(e.target.value)} />
+                  <input type="text" ref={inputRef} />
               </div>
               
-              <button type='button'>
+              <button type='submit'>
                   <FiSearch />
               </button>
           </form>    
         </Container>
     );
-}
+    }
