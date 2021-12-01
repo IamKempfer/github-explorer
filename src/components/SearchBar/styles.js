@@ -60,7 +60,7 @@ h1{
       height: 2.5rem;
       border-radius: 50%;
       border: 0;
-      background-color: #2ea043;
+      background-color: var(--green-g);
       color: #fff;
       transition: filter .3s ease;
 

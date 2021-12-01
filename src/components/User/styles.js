@@ -15,7 +15,7 @@ img{
     width: 8rem;    
     height: 8rem;
     border-radius: 50%;
-    border: 4px solid #56a2f9;
+    border: 4px solid var(--blue-b);
     margin-bottom: 0.5rem;
 }
 

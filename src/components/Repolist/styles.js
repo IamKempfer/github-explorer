@@ -4,7 +4,7 @@ export const Container = styled.main`
 width: 100%;
 background-color: var(--shape);
 border-radius: 10px;
-border-bottom:10px solid #56a2f9;
+border-bottom:10px solid var(--blue-b);
 
 div{
     display: flex;

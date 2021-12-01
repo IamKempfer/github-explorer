@@ -20,6 +20,6 @@ gap: .5rem;
     }
 
     a{
-        color: #56a2f9;
+        color: var(--blue-b);
     }
 `
